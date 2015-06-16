@@ -1,7 +1,7 @@
 package com.example.marcin.ZosiaRemoteControl;
 
 /**
- * Created by Marcin on 2015-03-01.
+ * Created by Aleksandra on 2015-06-04.
  */
 //import java.util.ArrayList;
 //import java.util.LinkedList;

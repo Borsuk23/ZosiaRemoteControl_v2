@@ -32,6 +32,8 @@ import android.os.ParcelUuid;
 import android.os.Looper;
 import android.util.Log;
 
+import com.example.marcin.ZosiaRemoteControl.Decoder;
+
 public class MainActivity extends ActionBarActivity {
 
     final int MESSAGE_READ=1254;
