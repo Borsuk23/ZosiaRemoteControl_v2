@@ -29,7 +29,7 @@ public class Decoder {
         }catch(Exception e){
             Log.i("Error","Nie ma takiej klasy!");
             available.clear();
-            available.add(new MainActivity.DistanceMsg());
+            //available.add(new MainActivity.DistanceMsg());
             matching.add(new Boolean(true));
             return false;
         }

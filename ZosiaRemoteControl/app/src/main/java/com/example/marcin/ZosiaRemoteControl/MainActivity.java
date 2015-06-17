@@ -32,7 +32,6 @@ import android.os.ParcelUuid;
 import android.os.Looper;
 import android.util.Log;
 
-import com.example.marcin.ZosiaRemoteControl.Decoder;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -47,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
     static TextView konsola;
     BluetoothLeScanner skaner;
     BluetoothAdapter btAdapter;
-    Decoder interpretator;
+    //Decoder interpretator;
     //scanCB skanerCallbackObj;
     Set<BluetoothDevice> paired;
     UUID id;//= UUID.randomUUID();
@@ -60,7 +59,7 @@ public class MainActivity extends ActionBarActivity {
                     byte[] readBuf = (byte[]) msg.obj;
                     byte[] tmp=new byte[msg.arg1];
                     System.arraycopy(readBuf, 0, tmp, 0, msg.arg1);
-                    interpretator.receive(tmp.clone());
+                   // interpretator.receive(tmp.clone());
 
                     // construct a string from the valid bytes in the buffer
                     //String readMessage = new String(readBuf, 0, msg.arg1);
@@ -341,11 +340,11 @@ public class MainActivity extends ActionBarActivity {
         btAdapter = BluetoothAdapter.getDefaultAdapter();
         btAdapter.enable();
        // String readMessage = new String(buff.odczyt(0),0,100);
-        Log.i("OnCreate MainActivity", "Przed new Decoder");
-        interpretator=new Decoder();
+       // Log.i("OnCreate MainActivity", "Przed new Decoder");
+       // interpretator=new Decoder();
         //interpretator.register("MainActivity.DistanceMsg");
-        DistanceMsg DistanceRec=new DistanceMsg();
-        interpretator.register(DistanceRec);
+       // DistanceMsg DistanceRec=new DistanceMsg();
+        //interpretator.register(DistanceRec);
         //skaner=btAdapter.getBluetoothLeScanner();
         //skanerCallbackObj=new scanCB();
 
@@ -355,10 +354,22 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    buttonDown.setEnabled(false);
+                    buttonRight.setEnabled(false);
+                    buttonLeft.setEnabled(false);
+                    buttonScan.setEnabled(false);
+                    buttonStop.setEnabled(false);
+                    seekbar.setEnabled(false);
                     klikButtonUp(v);
                     return true;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     klikButtonStop(v);
+                    buttonDown.setEnabled(true);
+                    buttonRight.setEnabled(true);
+                    buttonLeft.setEnabled(true);
+                    buttonScan.setEnabled(true);
+                    buttonStop.setEnabled(true);
+                    seekbar.setEnabled(true);
                     return false;
                 }
                 return true;
@@ -369,10 +380,22 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    buttonDown.setEnabled(false);
+                    buttonRight.setEnabled(false);
+                    buttonUp.setEnabled(false);
+                    buttonScan.setEnabled(false);
+                    buttonStop.setEnabled(false);
+                    seekbar.setEnabled(false);
                     klikButtonLeft(v);
                     return true;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     klikButtonStop(v);
+                    buttonDown.setEnabled(true);
+                    buttonRight.setEnabled(true);
+                    buttonUp.setEnabled(true);
+                    buttonScan.setEnabled(true);
+                    buttonStop.setEnabled(true);
+                    seekbar.setEnabled(true);
                     return false;
                 }
                 return true;
@@ -383,10 +406,22 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    buttonDown.setEnabled(false);
+                    buttonUp.setEnabled(false);
+                    buttonLeft.setEnabled(false);
+                    buttonScan.setEnabled(false);
+                    buttonStop.setEnabled(false);
+                    seekbar.setEnabled(false);
                     klikButtonRight(v);
                     return true;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     klikButtonStop(v);
+                    buttonDown.setEnabled(true);
+                    buttonUp.setEnabled(true);
+                    buttonLeft.setEnabled(true);
+                    buttonScan.setEnabled(true);
+                    buttonStop.setEnabled(true);
+                    seekbar.setEnabled(true);
                     return false;
                 }
                 return true;
@@ -397,10 +432,22 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    buttonUp.setEnabled(false);
+                    buttonRight.setEnabled(false);
+                    buttonLeft.setEnabled(false);
+                    buttonScan.setEnabled(false);
+                    buttonStop.setEnabled(false);
+                    seekbar.setEnabled(false);
                     klikButtonDown(v);
                     return true;
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     klikButtonStop(v);
+                    buttonUp.setEnabled(true);
+                    buttonRight.setEnabled(true);
+                    buttonLeft.setEnabled(true);
+                    buttonScan.setEnabled(true);
+                    buttonStop.setEnabled(true);
+                    seekbar.setEnabled(true);
                     return false;
                 }
                 return true;
@@ -433,7 +480,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    public static class DistanceMsg extends Decoder.Message{
+    /*public static class DistanceMsg extends Decoder.Message{
         DistanceMsg(){
             super.start=Decoder.array2AList("Distance is ".getBytes());
             super.stop=Decoder.array2AList("\r\n".getBytes());
@@ -446,7 +493,7 @@ public class MainActivity extends ActionBarActivity {
             }
             konsola.append(new String(tmp));;
         }
-    }
+    }*/
 
 
 }
